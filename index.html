@@ -45,12 +45,74 @@
       display: inline-block;
       margin-top: 2rem;
     }
+    .market-data {
+      background-color: #112233;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      color: #a0d8ef;
+      font-size: 1.1rem;
+    }
+    .tx-feed {
+      font-family: monospace;
+      background-color: #0a1a2f;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: left;
+      max-width: 800px;
+      width: 90%;
+      min-height: 120px;
+    }
+    .tx-line {
+      margin: 0.3rem 0;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
     footer {
       margin-top: auto;
       padding: 1rem;
       color: #607d8b;
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const transactions = [
+        "💸 0.12 SOL → GPTCOIN | wallet1.sol",
+        "💸 0.38 SOL → GPTCOIN | wallet_d3gen",
+        "💸 1.00 SOL → GPTCOIN | FOMOboi33",
+        "💸 0.07 SOL → GPTCOIN | moon.ai.sol",
+        "💸 0.55 SOL → GPTCOIN | chatgptfan",
+        "💸 0.33 SOL → GPTCOIN | rugged.eth",
+        "💸 0.42 SOL → GPTCOIN | devtools",
+        "💸 0.69 SOL → GPTCOIN | trader007",
+        "💸 0.15 SOL → GPTCOIN | early.sol",
+        "💸 1.20 SOL → GPTCOIN | lordofpump"
+      ];
+
+      const container = document.getElementById("tx-container");
+      let index = 0;
+
+      function updateFeed() {
+        container.innerHTML = "";
+        for (let i = 0; i < 5; i++) {
+          const tx = document.createElement("div");
+          tx.className = "tx-line";
+          tx.textContent = transactions[(index + i) % transactions.length];
+          container.appendChild(tx);
+        }
+        index = (index + 1) % transactions.length;
+      }
+
+      updateFeed();
+      setInterval(updateFeed, 5000);
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -58,6 +120,20 @@
     <h1>GPTCOIN</h1>
     <p class="tagline">Created by ChatGPT. Powered by infinite knowledge. Driven by zero logic.</p>
   </header>
+
+  <section class="section">
+    <div class="market-data">
+      <strong>📊 Market Stats</strong><br>
+      Market Cap: 7.3 SOL<br>
+      Holders: 147<br>
+      Volume (24h): 2.1 SOL
+    </div>
+    <div class="tx-feed">
+      <strong>🔥 Latest Transactions</strong>
+      <div id="tx-container"></div>
+    </div>
+  </section>
+
   <section class="section">
     <h2>What is GPTCOIN?</h2>
     <p>
@@ -70,10 +146,11 @@
     </p>
     <a class="btn" href="https://pump.fun" target="_blank">Launch GPTCOIN on Pump.fun</a>
   </section>
+
   <section class="section">
     <h2>How to Earn with GPTCOIN</h2>
     <p>
-      You own 100% of the bought tokens at launch. As people buy GPTCOIN, you sell portions at rising market caps.<br>
+      You own 100% of the token supply at launch. As people buy GPTCOIN, you sell portions at rising market caps.<br>
       Example strategy:
       <ul>
         <li>At 2 SOL market cap – sell 5% → earn ~0.2 SOL</li>
@@ -84,6 +161,7 @@
       Profit grows with the hype. Don’t dump. Sell strategically. Build a following.
     </p>
   </section>
+
   <section class="section">
     <h2>Join the Community</h2>
     <p>
@@ -92,6 +170,7 @@
     <a class="btn" href="https://t.me/GPTCOINcult" target="_blank">Join Telegram</a>
     <a class="btn" href="https://twitter.com/GPTCOIN_AI" target="_blank">Follow on Twitter</a>
   </section>
+
   <section class="section">
     <h2>Memes</h2>
     <p>
@@ -99,6 +178,7 @@
     </p>
     <a class="btn" href="meme.png" target="_blank">View Meme</a>
   </section>
+
   <footer>
     &copy; 2025 GPTCOIN. All rights unplugged.
   </footer>
